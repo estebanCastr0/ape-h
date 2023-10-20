@@ -1,0 +1,23 @@
+<div>
+    <h2>Calculador de Promedio</h2>
+  
+    <label for="cortes">Número de cortes</label><br>
+    <input type="number" id="cortes" name="cortes" [(ngModel)]="cortes[0]"><br>
+    <button type="button" (click)="addCorteField()">Agregar Corte</button><br><br>
+
+    <form (ngSubmit)="calculateAverage()">
+      <div *ngFor="let corte of cortes; let i = index;">
+        <label for="value{{ i }}">Nota {{ i + 1 }}:</label>
+        <input type="number" id="value{{ i }}" name="value{{ i }}" [(ngModel)]="values[i]"><br>
+        <label for="value{{ i }}">Peso {{ i + 1 }}:</label>
+        <input type="number" id="pesos{{ i }}" name="pesos{{ i }}" [(ngModel)]="pesos[i]"><br><br>
+        <button type="button" (click)="removeCorteField(i)">Eliminar Corte</button><br><br>
+      </div>
+  
+      <button type="submit">Calcular Promedio</button><br>
+    </form>
+    <button type="button" (click)="calcularPredictivo()">Calculo Predictivo</button>
+
+    <p *ngIf="average !== null">Promedio: {{ average.toFixed(2) }}</p>
+    <p *ngIf="errorMessage">{{ errorMessage }}</p>
+</div>
