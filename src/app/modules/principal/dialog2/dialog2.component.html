@@ -1,0 +1,35 @@
+<div class="p-4">
+  <h2 class="text-xl font-semibold mb-4">Cargue de Horarios de Electivas Libres</h2>
+  <div class="botones-container">
+      <h3 class="text-center text-2xl font-bold mb-8">Por favor, realice el cargue del archivo</h3>
+      <input
+        type="file"
+        id="text"
+        class="form-control"
+        accept=".csv"
+        (change)="upload($event)"
+      />
+      <div *ngIf="!isFileValid" class="warning">El archivo seleccionado no es válido. Por favor, seleccione un archivo .csv.</div>
+      <div *ngIf="fileName; else noFile">Archivo cargado: {{ fileName }}</div>
+      <div>
+        <button
+          mat-raised-button
+          class="custom-primary-button"
+          (click)="onNoClick()"
+        >
+          Cancelar
+        </button>
+
+        <button
+            mat-raised-button
+            class="custom-primary-button"
+            (click)="guardarHorario()"
+        >
+            Guardar Horario
+        </button>
+      </div>
+
+      <ng-template #noFile> </ng-template>
+  </div>
+</div>
+

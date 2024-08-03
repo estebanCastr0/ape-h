@@ -1,0 +1,14 @@
+.primary-color {
+  color: #005E6E;
+}
+
+.border-color {
+  border-color: #005E6E;
+}
+
+.titulo {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrar horizontalmente */
+  justify-content: center; /* Centrar verticalmente */
+}

@@ -1,0 +1,22 @@
+.semestre,
+.curso {
+	background-color: #f0f0f0;
+	border: 1px solid #ccc;
+	padding: 10px;
+	text-align: center;
+}
+
+.bg-cabecera {
+  background-color: #005E6E;
+}
+
+.botones-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrar horizontalmente */
+  justify-content: center; /* Centrar verticalmente */
+}
+
+.botones-container > div {
+  margin-bottom: 10px; /* Espacio entre los botones */
+}

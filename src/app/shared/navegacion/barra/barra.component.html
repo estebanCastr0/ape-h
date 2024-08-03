@@ -1,0 +1,22 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="onMenuToggleDispatch()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <!-- Logo -->
+  <div class="flex items-center mr-4 ml-4">
+    <!-- Aquí reemplaza 'logo.svg' con la ruta a tu logotipo -->
+    <img src="./assets/img/logo2.jpg" alt="Logo" class="h-8 w-8 mr-2">
+
+    <!-- Título -->
+    <span class="text-lg">APE-H</span>
+  </div>
+  <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+    <ul fxLayout="row" fxLayoutGap="10px" class="navegacion-menu">
+
+      <li *ngIf="!estadoUsuario"><a routerLink="/auth/registrar">Registrar</a></li>
+      <li *ngIf="!estadoUsuario"><a routerLink="/auth/login">Login</a></li>
+      <!-- <li *ngIf="estadoUsuario"><a routerLink="/">Home</a></li>
+      <li (click)="terminarSesion()" *ngIf="estadoUsuario"><a routerLink="/">Salir</a></li> -->
+    </ul>
+  </div>
+</mat-toolbar>

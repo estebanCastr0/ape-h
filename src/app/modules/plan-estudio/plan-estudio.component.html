@@ -1,0 +1,135 @@
+<div class="container mx-auto mt-8">
+  <h1 class="text-center text-2xl font-bold mb-8">Plan de Estudios</h1>
+  <!-- Leyenda -->
+  <div class="flex justify-end mb-4">
+    <!-- Cursado -->
+    <div class="flex items-center">
+      <div class="w-4 h-4 rounded-full bg-green-300 mr-2"></div>
+      <span>Cursado</span>
+    </div>
+    <!-- Disponible -->
+    <div class="flex items-center ml-4">
+      <div class="w-4 h-4 rounded-full bg-orange-300 mr-2"></div>
+      <span>Disponible</span>
+    </div>
+    <!-- No Disponible -->
+    <div class="flex items-center ml-4">
+      <div class="w-4 h-4 rounded-full bg-red-300 mr-2"></div>
+      <span>No Disponible</span>
+    </div>
+    <div class="flex items-center ml-4">
+      <div class="w-4 h-4 rounded-full bg-yellow-300 mr-2"></div>
+      <span>Por Matricular</span>
+    </div>
+  </div>
+
+  <mat-grid-list cols="{{ data.length }}" rowHeight="200px">
+    <!-- Primera fila para los semestres -->
+    <mat-grid-tile
+      *ngFor="let semestre of data"
+      class="bg-cabecera text-white p-4 rounded-t-lg shadow-md"
+    >
+      <h3>{{ semestre.nombre }}</h3>
+    </mat-grid-tile>
+    <!-- Resto de filas para los cursos -->
+  
+    <ng-container *ngFor="let cursoIndex of generarRango(maxCursos())">
+      <mat-grid-tile 
+        *ngFor="let semestre of data"
+        class="p-4 rounded-b-lg shadow-md cursor-pointer flex flex-col justify-between"
+      >
+        <div
+          *ngIf="semestre.cursos[cursoIndex]"
+          [ngClass]="{
+            'bg-green-300': getCurso(semestre, cursoIndex)?.estado === 1,
+            'bg-orange-300': getCurso(semestre, cursoIndex)?.estado === 2,
+            'bg-red-300': getCurso(semestre, cursoIndex)?.estado === 3,
+            'bg-yellow-300': getCurso(semestre, cursoIndex)?.estado === 4
+          }"
+          class="w-full px-1 py-1"
+          [matTooltip]="
+            getCurso(semestre, cursoIndex)?.estado === 3
+              ? 'Este curso tiene un requisito'
+              : ''
+          "
+        >
+          <p           (click)="
+          getCurso(semestre, cursoIndex)?.estado !== 3 &&
+            seleccionarCurso(getCurso(semestre, cursoIndex))
+        ">
+            <strong>Nombre:</strong>
+            {{ getCurso(semestre, cursoIndex)?.nombre }}
+          </p>
+          <p>
+            <strong>Créditos:</strong>
+            {{ getCurso(semestre, cursoIndex)?.creditos }}
+          </p>
+          <p>
+            <strong>Estado:</strong>
+            {{
+              getCurso(semestre, cursoIndex)?.estado === 1
+                ? 'Cursado'
+                : getCurso(semestre, cursoIndex)?.estado === 2
+                ? 'Disponible'
+                : 'No Disponible'
+            }}
+          </p>
+          <p>
+            <button
+            mat-raised-button
+            color="primary"
+            class="text-white font-bold py-2 px-4 rounded mt-2"
+            (click)="addToSelectedCourses(getCurso(semestre, cursoIndex))"
+          >
+            Agregar
+          </button>
+          </p>
+          <!-- Button placed below class information -->
+        </div>
+      </mat-grid-tile>
+    </ng-container>
+  </mat-grid-list>
+  
+  
+
+  <div class="botones-container">
+    <h3 class="text-center text-2xl font-bold mb-8">Archivo de pensum</h3>
+    <input
+      type="file"
+      id="text"
+      class="form-control"
+      accept=".xlsx"
+      (change)="upload($event)"
+    />
+    <div *ngIf="!isFileValid" class="warning">
+      El archivo seleccionado no es válido. Por favor, seleccione un archivo .txt.
+    </div>
+    <div *ngIf="fileName; else noFile">Archivo cargado: {{ fileName }}</div>
+
+    <ng-template #noFile></ng-template>
+    <div>
+      <button
+        mat-raised-button
+        color="primary"
+        class="text-white font-bold py-2 px-4 rounded mr-4"
+        style="margin-left: 10px"
+        (click)="guardarEdicion()"
+      >
+        Guardar Edicion
+      </button>
+    </div>
+
+    <!-- List of selected courses -->
+    <div class="mt-4">
+      <h3 class="text-center text-2xl font-bold mb-4">Cursos Seleccionados</h3>
+      <ul>
+        <li *ngFor="let curso of selectedCourses">
+          {{ curso.nombre }}
+          <button mat-icon-button (click)="removeFromSelectedCourses(curso)">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

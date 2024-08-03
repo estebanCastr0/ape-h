@@ -1,0 +1,36 @@
+<div class="p-4">
+  <h2 class="text-xl font-semibold mb-4">Horarios Materias de ingenieria de sistemas</h2>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Codigo</th>
+          <th>Nombre materia</th>
+          <th>Día</th>
+          <th>Hora inicio</th>
+          <th>Hora fin</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of data">
+          <td>{{ item.codigo }}</td>
+          <td>{{ item.nombreMateria }}</td>
+          <td>{{ item.dia }}</td>
+          <td>{{ item.horaInicio }}</td>
+          <td>{{ item.horaFin }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="botones-containerA">
+    <button
+      mat-raised-button
+      class="custom-primary-buttonA"
+      (click)="onNoClick()"
+    >
+      Cancelar
+    </button>
+  </div>
+</div>
+
+

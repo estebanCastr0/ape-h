@@ -1,0 +1,42 @@
+<div class="container mx-auto mt-8">
+  <h3 class="text-center text-2xl mb-8">Calculador de Promedio</h3>
+
+  <section class="flex justify-center items-center ">
+    <mat-card class="shadow-md rounded-lg px-8 pt-6 pb-8 mb-4" style="display: flex; flex-direction: column;">
+      <div style="margin-bottom: 20px;">
+        <h2 for="cortes" class="primary-color">Número de cortes:</h2>
+        <input type="number" id="cortes" name="cortes" [(ngModel)]="cortes[0]" class="primary-color border-color" style="margin-bottom: 10px;">
+      </div>
+      <div>
+        <button mat-raised-button color="primary" class="text-white font-bold py-2 px-4 rounded" style="margin-left: 100px;" (click)="addCorteField()">
+          Agregar corte
+        </button>
+      </div>
+
+      <div>
+        <form (ngSubmit)="calculateAverage()" fxLayout="column" fxLayoutGap="10px" #f="ngForm" style="display: flex; flex-direction: column; margin-bottom: 15px;">
+          <div *ngFor="let corte of cortes; let i = index;" style="display: flex; flex-direction: column; margin-bottom: 15px;">
+            <label for="value{{ i }}" class="primary-color" >Nota {{ i + 1 }}:</label>
+            <input type="number" id="value{{ i }}" name="value{{ i }}" [(ngModel)]="values[i]" class="primary-color border-color" style="margin-bottom: 10px;">
+            <label for="pesos{{ i }}" class="primary-color">Peso {{ i + 1 }}:</label>
+            <input type="number" id="pesos{{ i }}" name="pesos{{ i }}" [(ngModel)]="pesos[i]" class="primary-color border-color" style="margin-bottom: 10px;">
+            <button mat-raised-button color="primary" class="text-white font-bold py-2 px-4 rounded" style="margin-left: 10px;" (click)="removeCorteField(i)">
+              Eliminar corte
+            </button>
+          </div>
+        </form>
+      </div>
+      <div>
+        <button type="button" mat-raised-button color="primary" class="text-white font-bold py-2 px-4 rounded" style="margin-left: 10px;" (click)="calculateAverage()">
+          Calcular promedio
+        </button>
+        <button type="button" mat-raised-button color="primary" class="text-white font-bold py-2 px-4 rounded" style="margin-left: 10px;" (click)="calcularPredictivo()">
+          Calculo Predictivo
+        </button>
+      </div>
+
+      <h2 *ngIf="average !== null" class="primary-color">Promedio: {{ average }}</h2>
+      <h2 *ngIf="errorMessage" class="primary-color">{{ errorMessage }}</h2>
+    </mat-card>
+  </section>
+</div>

@@ -1,0 +1,110 @@
+<section class="flex justify-center items-center h-screen">
+  <div class="max-w-md w-full">
+    <mat-card class="shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <!-- Logo -->
+      <div class="h-500 mb-8 w-full" style="background-color: #005E6E;">
+        <img src="assets/img/logo.jpg" alt="Logo" class="h-full w-auto">
+      </div>
+
+      <div>
+        <h1 class="titulo-grande">Registro Usuario</h1>
+      </div>
+      <form class="flex flex-col items-center" (ngSubmit)="registrarUsuario(f)" #f="ngForm">
+        <div class="mb-4 w-full">
+          <mat-form-field class="w-full">
+            <mat-label>Ingrese Nombre</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="Ingrese nombre"
+              ngModel
+              name="nombre"
+              required
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+            <mat-error>Debe ingresar un nombre</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="mb-4 w-full">
+          <mat-form-field class="w-full">
+            <mat-label>Ingrese Apellidos</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="Ingrese Apellidos"
+              ngModel
+              name="apellidos"
+              required
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+            <mat-error>Debe ingresar los apellidos</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="mb-4 w-full">
+          <mat-form-field class="w-full">
+            <mat-label>Ingrese Username</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="dnunezr"
+              ngModel
+              name="username"
+              required
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+            <mat-error>Debe ingresar un Username</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="mb-4 w-full">
+          <mat-form-field class="w-full">
+            <mat-label>Ingrese E-Mail</mat-label>
+            <input
+              matInput
+              type="email"
+              placeholder="Diego.nunez@gmail.com"
+              ngModel
+              name="email"
+              email
+              required
+              #emailInput="ngModel"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+            <mat-error *ngIf="emailInput.hasError('required')">
+              El E-Mail no puede estar en blanco
+            </mat-error>
+            <mat-error *ngIf="!emailInput.hasError('required')">
+              El E-Mail es invalido
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="mb-4 w-full">
+          <mat-form-field class="w-full" hintLabel="El password debe tener 7 caracteres">
+            <mat-label>Ingrese Password</mat-label>
+            <input
+              matInput
+              type="password"
+              placeholder="Ingresa Password"
+              ngModel
+              name="password"
+              required
+              minlength="7"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+            <mat-error>El password debe tener mas de 7 caracteres</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="flex items-center justify-center">
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="f.invalid"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
+            Guardar
+          </button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</section>

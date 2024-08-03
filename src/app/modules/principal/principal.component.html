@@ -1,0 +1,42 @@
+<div class="container mx-auto mt-8">
+  <h1 class="text-center text-2xl font-bold mb-8">Bienvenido al Panel de Administrador</h1>
+  <div class="flex justify-center items-center h-screen">
+    <div class="max-w-xl w-full">
+      <mat-card class="shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
+        <div class="grid grid-cols-2 gap-4">
+          <!-- Opción 1 -->
+          <div class="option-container">
+            <span class="option-title">Cargar Horarios de Carrera</span>
+            <button (click)="cargarHorarios()">
+              <img src="assets/img/calendar-days-solid.svg" alt="Icono" class="option-icon">
+            </button>
+          </div>
+
+          <!-- Opción 2 -->
+          <div class="option-container">
+            <span class="option-title">Cargar Horarios Electivas</span>
+            <button (click)="cargarHorariosElectivas()">
+              <img src="assets/img/upload-solid.svg" alt="Icono" class="option-icon">
+            </button>
+          </div>
+
+          <!-- Opción 3 -->
+          <div class="option-container">
+            <span class="option-title">Horario Materiales Carrera</span>
+            <button (click)="verHorarios()">
+              <img src="assets/img/magnifying-glass-solid.svg" alt="Icono" class="option-icon">
+            </button>
+          </div>
+
+          <!-- Opción 4 -->
+          <div class="option-container">
+            <span class="option-title">Horario Materias Electivas</span>
+            <button (click)="verHorariosElectivas()">
+              <img src="assets/img/check-to-slot-solid.svg" alt="Icono" class="option-icon">
+            </button>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

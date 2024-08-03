@@ -1,0 +1,22 @@
+$primary-color: #005E6E;
+
+/* Estilos personalizados para el botón */
+.custom-primary-button {
+  background-color: $primary-color; /* Establece el color de fondo del botón */
+  color: white; /* Establece el color del texto del botón */
+  font-weight: bold; /* Hace que el texto del botón sea negrita */
+  padding: 0.5rem 1rem; /* Agrega relleno al botón */
+  border-radius: 0.25rem; /* Establece las esquinas redondeadas del botón */
+  margin-left: 10px; /* Agrega un margen a la izquierda del botón */
+}
+
+.botones-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrar horizontalmente */
+  justify-content: center; /* Centrar verticalmente */
+}
+
+.botones-container > div {
+  margin-bottom: 10px; /* Espacio entre los botones */
+}

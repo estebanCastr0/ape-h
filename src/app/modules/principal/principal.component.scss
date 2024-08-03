@@ -1,0 +1,12 @@
+.option-container {
+  @apply flex flex-col items-center justify-center rounded-lg p-6;
+}
+.option-title {
+  @apply font-semibold text-lg text-center;
+  color: #005E6E;
+}
+
+.option-icon {
+  @apply h-12 w-12 mt-2;
+}
+

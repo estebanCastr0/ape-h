@@ -1,0 +1,47 @@
+<mat-nav-list *ngIf="estadoUsuario" class="navegacion-menu">
+  <!-- <a mat-list-item routerLink="/" (click)="onCerrarMenu()" *ngIf="estadoUsuario">
+    <mat-icon>home</mat-icon>
+    <span class="navegation-list-label">Inicio</span>
+  </a>
+  <a mat-list-item routerLink="/books" (click)="onCerrarMenu()" *ngIf="estadoUsuario">
+    <mat-icon>menu_book</mat-icon>
+    <span class="navegation-list-label">Libros</span>
+  </a>
+  <a mat-list-item routerLink="/autores" (click)="onCerrarMenu()" *ngIf="estadoUsuario">
+    <mat-icon>groups</mat-icon>
+    <span class="navegation-list-label">Autores</span>
+  </a> -->
+  <div class="h-500 mb-8">
+    <img src="assets/img/logo.jpg" alt="Logo" class="h-full w-auto">
+  </div>
+  <a mat-list-item routerLink="/plan-estudio" (click)="onCerrarMenu()" *ngIf="estadoUsuario">
+    <mat-icon>how_to_reg</mat-icon>
+    <span class="navegation-list-label">Plan de Estudio</span>
+  </a>
+  <a mat-list-item routerLink="/seleccion-materias" (click)="onCerrarMenu()" *ngIf="estadoUsuario">
+    <mat-icon>how_to_reg</mat-icon>
+    <span class="navegation-list-label">Selección de Materias</span>
+  </a>
+  <a mat-list-item routerLink="/principal" (click)="onCerrarMenu()" *ngIf="estadoUsuario">
+    <mat-icon>how_to_reg</mat-icon>
+    <span class="navegation-list-label">Principal (Admin)</span>
+  </a>
+  <a mat-list-item routerLink="/promedio" (click)="onCerrarMenu()" *ngIf="estadoUsuario">
+    <mat-icon>how_to_reg</mat-icon>
+    <span class="navegation-list-label">Calcular Promedio</span>
+  </a>
+
+  <a mat-list-item routerLink="/config-usuario" (click)="onCerrarMenu()" *ngIf="!estadoUsuario">
+    <mat-icon>how_to_reg</mat-icon>
+    <span class="navegation-list-label">Recuperar contraseña</span>
+  </a>
+
+  <a mat-list-item routerLink="/config-usuario" (click)="onCerrarMenu()" *ngIf="estadoUsuario">
+    <mat-icon>how_to_reg</mat-icon>
+    <span class="navegation-list-label">Configurar Usuario</span>
+  </a>
+  <a mat-list-item (click)="terminarSesionMenu()" *ngIf="estadoUsuario">
+    <mat-icon>eject</mat-icon>
+    <span class="navegation-list-label">Salir</span>
+  </a>
+</mat-nav-list>

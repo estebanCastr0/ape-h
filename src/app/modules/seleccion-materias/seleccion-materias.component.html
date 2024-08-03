@@ -1,0 +1,110 @@
+<div class="container mx-auto mt-8 px-4">
+    <h1 class="text-center text-2xl font-bold mb-8">Selección de Materias</h1>
+    <div class="flex justify-between gap-4" style="height: 500px">
+        <div class="w-1/6">
+            <!-- Contenedor de la primera columna -->
+            <div class="h-full flex flex-col justify-center">
+                <!-- Card con lista de checkboxes -->
+                <div class="bg-white shadow-md p-4 rounded-lg w-full" style="height: 100%; overflow-y: auto">
+                    <!-- Lista de checkboxes -->
+                    <div class="mb-2" *ngFor="let curso of cursos">
+                        <div class="flex items-center mb-1">
+                            <mat-checkbox color="primary" class="mr-2" [checked]="curso.selected" (click)="toggleCurso(curso, curso.time)">{{ curso.nombre }}</mat-checkbox>
+                            <mat-select [(value)]="curso.time" placeholder="Tiempo" >
+                                <mat-option value="Diurno">Día</mat-option>
+                                <mat-option value="Nocturno">Noche</mat-option>
+                            </mat-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+        </div>
+
+        <!-- Segunda columna -->
+        <div class="w-2/3">
+            <!-- Contenedor de la segunda columna (con card) -->
+            <div class="h-full">
+                <!-- Card con la tabla -->
+                <div class="bg-white shadow-md p-4 rounded-lg w-full" style="height: 100%; overflow-y: auto">
+                    <!-- Mat Table -->
+                    <table mat-table [dataSource]="dataSource" class="w-full">
+                        <!-- Columnas de la tabla -->
+                        <ng-container matColumnDef="{{ column }}" *ngFor="let column of displayedColumns">
+                            <th mat-header-cell *matHeaderCellDef style="text-align: center !important; min-width: 120px">
+                                {{ column }}
+                            </th>
+                            <td mat-cell *matCellDef="let element" style="text-align: center !important">
+                                {{ element[column] }}
+                            </td>
+                        </ng-container>
+
+                        <!-- Definición de las columnas -->
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tercera columna -->
+        <div class="w-1/6">
+            <!-- Contenedor de la tercera columna -->
+            <div class="h-full flex flex-col justify-center">
+                <!-- Card con lista de checkboxes -->
+                <div class="bg-white shadow-md p-4 rounded-lg" style="height: 100%; overflow-y: auto">
+                    <!-- Lista de checkboxes -->
+                    <div class="mb-2" *ngFor="let cursoElectivo of cursosElectivos">
+                        <mat-checkbox color="primary" class="items-center" [checked]="cursoElectivo.selected" (click)="toggleCursoElectivo(cursoElectivo)">{{ cursoElectivo.nombre }}</mat-checkbox>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botones -->
+    <div class="container mx-auto mt-8 px-4">
+        <h1 class="text-center text-2xl font-bold mb-8">Selección de Materias</h1>
+<!-- Button to trigger file input -->
+<div class="flex justify-center">
+    <input type="file" (change)="handleFileInput($event)" style="display: none;" id="fileInput">
+    <button mat-raised-button color="primary" class="text-white font-bold py-2 px-4 rounded" onclick="document.getElementById('fileInput').click()">
+        Cargar Clases desde CSV
+    </button>
+</div>
+
+<!-- Add some spacing -->
+<div style="margin-top: 10px;"></div>
+
+<!-- Button to load schedules -->
+<div class="flex justify-center" *ngIf="csvLoaded">
+    <input type="file" (change)="cargarHorariosClase($event)" style="display: none;" id="fileInput2">
+    <button mat-raised-button color="primary" class="text-white font-bold py-2 px-4 rounded" onclick="document.getElementById('fileInput2').click()">
+        Cargar Horarios
+    </button>
+</div>
+<div style="margin-top: 10px;"></div>
+<!-- Add second button for "Electiva" course -->
+<div class="flex justify-center" *ngIf="csvLoaded && hasElectiva">
+    <input type="file" (change)="cargarElectivas($event)" style="display: none;" id="fileInput3">
+    <button mat-raised-button color="primary" class="text-white font-bold py-2 px-4 rounded" onclick="document.getElementById('fileInput3').click()">
+        Cargar Horarios Electivos
+    </button>
+</div>
+
+
+    </div>
+    
+    
+    <div class="flex justify-center mt-8">
+        <!--<button mat-raised-button color="primary" class="text-white font-bold py-2 px-4 rounded mr-4">
+            Sugerir Horario
+        </button>-->
+        <button mat-raised-button color="primary" (click)="generatePDF()" class="text-white font-bold py-2 px-4 rounded">
+            Guardar Horario
+        </button>
+        <!--<button mat-raised-button color="primary" (click)="printSelectedCursosElectivos()">Print Selected Cursos Electivos</button>-->
+
+    </div>
+</div>

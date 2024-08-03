@@ -1,0 +1,64 @@
+<section class="flex justify-center items-center h-screen flex-col">
+
+  <div class="max-w-md w-full">
+    <mat-card class="shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full">
+      <!-- Logo -->
+      <div class="h-500 mb-8">
+        <img src="assets/img/logo.jpg" alt="Logo" class="h-full w-auto">
+      </div>
+
+      <form
+        (ngSubmit)="loginUsuario(f)"
+        #f="ngForm"
+      >
+        <div class="mb-4">
+          <mat-form-field class="w-full">
+            <mat-label>Ingrese un e-mail</mat-label>
+            <input
+              matInput
+              type="email"
+              placeholder="E-Mail"
+              name="email"
+              ngModel
+              required
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            >
+            <mat-error>Debe Ingresar un E-Mail</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="mb-4">
+          <mat-form-field class="w-full">
+            <mat-label>Ingrese Password</mat-label>
+            <input
+              matInput
+              type="password"
+              placeholder="Password"
+              name="password"
+              ngModel
+              required
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+            >
+            <mat-error>Debe Ingresar un Password</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Texto de registro -->
+        <div class="text-sm mb-5">
+          <p>¿Olvidaste tu contraseña?<a href="auth/recuperacion" class="font-bold text-blue-500"> Ingresa por aquí</a></p>
+        </div>
+
+        <div class="flex items-center justify-center">
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
+            Enviar
+          </button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</section>
+

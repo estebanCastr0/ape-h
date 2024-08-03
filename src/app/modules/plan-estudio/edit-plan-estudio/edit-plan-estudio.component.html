@@ -1,0 +1,25 @@
+<div class="p-4">
+	<h2 class="text-xl font-semibold mb-4">Detalles del Curso</h2>
+	<div class="mb-2">
+		<p><strong>Nombre:</strong> {{ data.nombre }}</p>
+	</div>
+	<div class="mb-2">
+		<mat-form-field appearance="fill">
+			<mat-label>Estado</mat-label>
+			<mat-select [(ngModel)]="data.estado" name="estado">
+				<mat-option *ngFor="let estado of estados" [value]="estado.value">{{
+					estado.label
+				}}</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<button
+        mat-raised-button
+        color="primary"
+        class="text-black font-bold py-2 px-4 rounded mr-4"
+        style="margin-left: 10px"
+		(click)="closeDialog()"
+      >
+          Cancelar
+      </button>
+	</div>
+</div>
